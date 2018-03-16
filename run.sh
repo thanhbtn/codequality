@@ -31,6 +31,13 @@ fi
 APP_PATH=$1
 CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.71.1}
 
+# Copy default config files unless already present
+for config_file in .codeclimate.yml .csslintrc .eslintignore .eslintrc .rubocop.yml coffeelint.json; do
+  if [ ! -f  $APP_PATH/$config_file ] ; then
+    cp /codeclimate_defaults/$config_file $APP_PATH/$config_file
+  fi
+done
+
 # Run the code climate container.
 # SOURCE_CODE env variable must be provided when launching this script. It allow
 # code climate engines to mount the source code dir into their own container.
