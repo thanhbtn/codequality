@@ -24,7 +24,7 @@ release-latest:
   variables:
     DOCKER_DRIVER: overlay2
   script:
-    - build_image()
+    - build_image
   only:
     - master
 
@@ -36,6 +36,6 @@ release-stable:
   variables:
     DOCKER_DRIVER: overlay2
   script:
-    - build_image()
+    - build_image
   only:
     - /^\d+-\d+-stable$/
