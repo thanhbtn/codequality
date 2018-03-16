@@ -32,7 +32,7 @@ APP_PATH=$1
 CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.71.1}
 
 # Copy default config files unless already present
-for config_file in .codeclimate.yml .csslintrc .eslintignore .eslintrc .rubocop.yml coffeelint.json; do
+for config_file in .codeclimate.yml .csslintrc .eslintignore .eslintrc.yml .rubocop.yml coffeelint.json; do
   if [ ! -f  $APP_PATH/$config_file ] ; then
     cp /codeclimate_defaults/$config_file $APP_PATH/$config_file
   fi
@@ -54,4 +54,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Only keep "issue" type
-jq -c 'map(select(.type == "issue"))' /tmp/raw_codeclimate.json > "$APP_PATH/codeclimate.json"
+jq -c 'map(select(.type == "Issue"))' /tmp/raw_codeclimate.json > "$APP_PATH/codeclimate.json"
