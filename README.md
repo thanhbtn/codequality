@@ -26,6 +26,11 @@ It is currently based on CodeClimate only, but this may change in the future.
 
 Some tools require to be able to launch Docker containers to scan your application.
 
+### Configuration
+
+GitLab Code Quality comes with some default engines enabled and [default configurations](./codeclimate_defaults) but we encourage you to customize them to your own needs.
+Please refer to [CodeClimate documentation](https://docs.codeclimate.com/docs/configuring-your-analysis) to learn more.
+
 ## Versioning and release cycle
 
 GitLab CodeQuality follows the versioning of GitLab (`MAJOR.MINOR` only) and is available as a Docker image tagged with `MAJOR-MINOR-stable`.
