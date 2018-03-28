@@ -6,11 +6,13 @@ These "stable" Docker images may be updated after release date, changes are adde
 
 
 ## 10-7-stable
+- Fix code climate issue type filter
 
 ## 10-6-stable
+- Initial release
 
 ## 10-5-stable
+- **Backport:** Initial release
 
 ## 10-4-stable
-
-- Initial import
+- **Backport:** Initial release
