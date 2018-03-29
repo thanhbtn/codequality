@@ -7,6 +7,7 @@ These "stable" Docker images may be updated after release date, changes are adde
 
 ## 10-7-stable
 - Fix code climate issue type filter
+- Check all supported config files before copying defaults
 
 ## 10-6-stable
 - Initial release
