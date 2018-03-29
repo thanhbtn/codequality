@@ -54,4 +54,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Only keep "issue" type
-jq -c 'map(select(.type == "issue"))' /tmp/raw_codeclimate.json > "$APP_PATH/codeclimate.json"
+jq -c 'map(select(.type | test("issue"; "i")))' /tmp/raw_codeclimate.json > "$APP_PATH/codeclimate.json"
