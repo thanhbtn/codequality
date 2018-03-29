@@ -31,12 +31,25 @@ fi
 APP_PATH=$1
 CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.71.1}
 
-# Copy default config files unless already present
-for config_file in .codeclimate.yml .csslintrc .eslintignore .eslintrc.yml .rubocop.yml coffeelint.json; do
+
+# Copy default config files unless already present for csslint, eslint (ignore), rubocop and coffeelint
+for config_file in .csslintrc .eslintignore .rubocop.yml coffeelint.json; do
   if [ ! -f  $APP_PATH/$config_file ] ; then
-    cp /codeclimate_defaults/$config_file $APP_PATH/$config_file
+    cp /codeclimate_defaults/$config_file $APP_PATH/
   fi
 done
+
+# Copy default config file unless already present for code climate
+# NB: check for all supported config files
+if ! [ -f  $APP_PATH/.codeclimate.yml -o -f $APP_PATH/.codeclimate.json ] ; then
+  cp /codeclimate_defaults/.codeclimate.yml $APP_PATH/
+fi
+
+# Copy default config file unless already present for eslint
+# NB: check for all supported config files
+if ! [ -f  $APP_PATH/.eslintrc.js -o -f $APP_PATH/.eslintrc.yaml -o -f $APP_PATH/.eslintrc.yml -o -f $APP_PATH/.eslintrc.json -o -f $APP_PATH/.eslintrc ] ; then
+  cp /codeclimate_defaults/.eslintrc.yml $APP_PATH/
+fi
 
 # Run the code climate container.
 # SOURCE_CODE env variable must be provided when launching this script. It allow
