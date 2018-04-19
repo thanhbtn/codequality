@@ -29,7 +29,7 @@ if [ $# -ne 1 ] ; then
 fi
 
 APP_PATH=$1
-CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.71.1}
+CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.71.2}
 
 
 # Copy default config files unless already present for csslint, eslint (ignore), rubocop and coffeelint
