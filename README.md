@@ -26,6 +26,15 @@ It is currently based on CodeClimate only, but this may change in the future.
 
 Some tools require to be able to launch Docker containers to scan your application.
 
+### Environment variables
+
+Code Quality can be configured with environment variables, here is a list:
+
+| Name            | Function                                             |
+|-----------------|------------------------------------------------------|
+| SOURCE_CODE     | Path to the source code to scan                      |
+| TIMEOUT_SECONDS | Custom timeout for the `codeclimate analyze` command |
+
 ### Configuration
 
 GitLab Code Quality comes with some default engines enabled and [default configurations](./codeclimate_defaults) but we encourage you to customize them to your own needs.
