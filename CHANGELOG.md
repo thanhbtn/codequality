@@ -8,6 +8,7 @@ These "stable" Docker images may be updated after release date, changes are adde
 - Fix code climate issue type filter
 - Check all supported config files before copying defaults
 - **Backport:** Update to Code Climate 0.71.2
+- **Backport:** Upgrade Code Climate to 0.72.0
 
 ## 10-6-stable
 - Initial release
