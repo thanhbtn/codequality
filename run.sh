@@ -29,26 +29,32 @@ if [ $# -ne 1 ] ; then
 fi
 
 APP_PATH=$1
+DEFAULT_FILES_PATH=${DEFAULT_FILES_PATH:-/codeclimate_defaults}
 CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.71.2}
+CONTAINER_TIMEOUT_SECONDS=${TIMEOUT_SECONDS:-900} # default to 15 min
 
+if [ -z "$SOURCE_CODE" ] ; then
+  echo "SOURCE_CODE env variable not set"
+  exit
+fi
 
 # Copy default config files unless already present for csslint, eslint (ignore), rubocop and coffeelint
 for config_file in .csslintrc .eslintignore .rubocop.yml coffeelint.json; do
   if [ ! -f  $APP_PATH/$config_file ] ; then
-    cp /codeclimate_defaults/$config_file $APP_PATH/
+    cp $DEFAULT_FILES_PATH/$config_file $APP_PATH/
   fi
 done
 
 # Copy default config file unless already present for code climate
 # NB: check for all supported config files
 if ! [ -f  $APP_PATH/.codeclimate.yml -o -f $APP_PATH/.codeclimate.json ] ; then
-  cp /codeclimate_defaults/.codeclimate.yml $APP_PATH/
+  cp $DEFAULT_FILES_PATH/.codeclimate.yml $APP_PATH/
 fi
 
 # Copy default config file unless already present for eslint
 # NB: check for all supported config files
 if ! [ -f  $APP_PATH/.eslintrc.js -o -f $APP_PATH/.eslintrc.yaml -o -f $APP_PATH/.eslintrc.yml -o -f $APP_PATH/.eslintrc.json -o -f $APP_PATH/.eslintrc ] ; then
-  cp /codeclimate_defaults/.eslintrc.yml $APP_PATH/
+  cp $DEFAULT_FILES_PATH/.eslintrc.yml $APP_PATH/
 fi
 
 # Run the code climate container.
@@ -58,7 +64,7 @@ fi
 # window for the analyze command.
 docker run \
     --env CODECLIMATE_CODE="$SOURCE_CODE" \
-    --env CONTAINER_TIMEOUT_SECONDS="$TIMEOUT_SECONDS" \
+    --env CONTAINER_TIMEOUT_SECONDS=$CONTAINER_TIMEOUT_SECONDS \
     --volume "$SOURCE_CODE":/code \
     --volume /tmp/cc:/tmp/cc \
     --volume /var/run/docker.sock:/var/run/docker.sock \
