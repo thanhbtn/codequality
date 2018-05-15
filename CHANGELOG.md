@@ -7,6 +7,7 @@ These "stable" Docker images may be updated after release date, changes are adde
 ## 10-8-stable
 - Update to Code Climate 0.71.2
 - Add optional variable(`TIMEOUT_SECONDS`) to allow user to give a custom timeout for the `codeclimate analyze` command
+- **Backport:** Upgrade Code Climate to 0.72.0
 
 ## 10-7-stable
 - Fix code climate issue type filter
