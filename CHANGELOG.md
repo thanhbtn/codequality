@@ -6,6 +6,7 @@ These "stable" Docker images may be updated after release date, changes are adde
 
 ## 11-0-stable
 - Upgrade Code Climate to 0.72.0
+- **Breaking Change:** rename report file from `codeclimate.json` to `gl-code-quality-report.json`
 
 ## 10-8-stable
 - Update to Code Climate 0.71.2

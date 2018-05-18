@@ -6,8 +6,8 @@ echo "1..2"
 failed=0
 step=1
 
-got="test/fixtures/codeclimate.json"
-expect="test/expect/codeclimate.json"
+got="test/fixtures/gl-code-quality-report.json"
+expect="test/expect/gl-code-quality-report.json"
 fixtures_path="$PWD/test/fixtures/"
 
 # Missing SOURCE_CODE env var

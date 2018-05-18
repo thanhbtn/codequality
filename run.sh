@@ -29,6 +29,7 @@ if [ $# -ne 1 ] ; then
 fi
 
 APP_PATH=$1
+REPORT_FILENAME="gl-code-quality-report.json"
 DEFAULT_FILES_PATH=${DEFAULT_FILES_PATH:-/codeclimate_defaults}
 CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.72.0}
 CONTAINER_TIMEOUT_SECONDS=${TIMEOUT_SECONDS:-900} # default to 15 min
@@ -76,4 +77,4 @@ if [ $? -ne 0 ]; then
 fi
 
 # Only keep "issue" type
-jq -c 'map(select(.type | test("issue"; "i")))' /tmp/raw_codeclimate.json > "$APP_PATH/codeclimate.json"
+jq -c 'map(select(.type | test("issue"; "i")))' /tmp/raw_codeclimate.json > "$APP_PATH/$REPORT_FILENAME"
