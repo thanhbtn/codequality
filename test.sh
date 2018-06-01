@@ -26,7 +26,13 @@ echo
 # Normal execution
 desc="Generate expected output"
 rm -f $got
-DEFAULT_FILES_PATH="$PWD/codeclimate_defaults" SOURCE_CODE=$fixtures_path ./run.sh $fixtures_path
+docker build -t codequality:test .
+docker run \
+  --env SOURCE_CODE="$fixtures_path" \
+  --volume "$fixtures_path":/code \
+  --volume /var/run/docker.sock:/var/run/docker.sock \
+  --volume /tmp/cc:/tmp/cc \
+  codequality:test /code
 
 if test $? -eq 0 && diff $got $expect; then
   echo "ok $step - $desc"

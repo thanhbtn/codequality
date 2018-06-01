@@ -31,7 +31,6 @@ fi
 APP_PATH=$1
 REPORT_FILENAME="gl-code-quality-report.json"
 DEFAULT_FILES_PATH=${DEFAULT_FILES_PATH:-/codeclimate_defaults}
-CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.72.0}
 CONTAINER_TIMEOUT_SECONDS=${TIMEOUT_SECONDS:-900} # default to 15 min
 
 if [ -z "$SOURCE_CODE" ] ; then
@@ -61,15 +60,9 @@ fi
 # Run the code climate container.
 # SOURCE_CODE env variable must be provided when launching this script. It allow
 # code climate engines to mount the source code dir into their own container.
-# TIMEOUT_SECONDS env variable is optional. It allows you to increase the timeout
-# window for the analyze command.
-docker run \
-    --env CODECLIMATE_CODE="$SOURCE_CODE" \
-    --env CONTAINER_TIMEOUT_SECONDS=$CONTAINER_TIMEOUT_SECONDS \
-    --volume "$SOURCE_CODE":/code \
-    --volume /tmp/cc:/tmp/cc \
-    --volume /var/run/docker.sock:/var/run/docker.sock \
-    "codeclimate/codeclimate:$CODECLIMATE_VERSION" analyze -f json > /tmp/raw_codeclimate.json
+CODECLIMATE_CODE="$SOURCE_CODE" \
+CONTAINER_TIMEOUT_SECONDS=$CONTAINER_TIMEOUT_SECONDS \
+/usr/src/app/bin/codeclimate analyze -f json > /tmp/raw_codeclimate.json
 
 if [ $? -ne 0 ]; then
     echo "Could not analyze code quality for the repository at $APP_PATH"

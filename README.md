@@ -16,6 +16,7 @@ It is currently based on CodeClimate only, but this may change in the future.
       --env SOURCE_CODE="$PWD" \
       --volume "$PWD":/code \
       --volume /var/run/docker.sock:/var/run/docker.sock \
+      --volume /tmp/cc:/tmp/cc \
       registry.gitlab.com/gitlab-org/security-products/codequality:${VERSION:-latest} /code
     ```
     `VERSION` can be replaced with the latest available release matching your GitLab version. See [Versioning](#versioning-and-release-cycle) for more details.
