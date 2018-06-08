@@ -4,6 +4,8 @@ GitLab CodeQuality follows versioning of GitLab (`MAJOR.MINOR` only) and generat
 
 These "stable" Docker images may be updated after release date, changes are added to the corresponding section bellow.
 
+## 11-1-stable
+
 ## 11-0-stable
 - Upgrade Code Climate to 0.72.0
 - **Breaking Change:** rename report file from `codeclimate.json` to `gl-code-quality-report.json`
