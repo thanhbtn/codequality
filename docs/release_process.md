@@ -10,11 +10,6 @@ This ensures GitLab Security Products stays compatible with the GitLab instance 
 
 Please note that the Auto-DevOps feature automatically uses the correct version. If you have your own `.gitlab-ci.yml` in your project, please ensure you are up-to-date with the [Auto-DevOps template](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml).
 
-A Release Manager is assigned to each release and is responsible for:
-
-- following the release process to generate the new version of related projects (binaries, docker images, etc.)
-- following the QA process to ensure we ship fully functionnal software
-
 ## codequality
 
 Release Managers ensure that the latest version of codequality (like codequality
@@ -28,14 +23,13 @@ They then perform Q&A on the latest release of GitLab.
 
 * Make sure there's a Docker image with tag `X-Y-stable`.
   The CI generates the `X-Y-stable` images only if the manual job `build major` is triggered and succeeds.
-* create the Release issue with the `./scripts/release_issue.rb X.Y` script which explains how to release each project:
+* create the Release issue
     * complete changelog/documentation with missing entries for `X-Y-stable`
-    * Use `./scripts/bump_versions.rb X.Y X.Y+1`, it will do several things:
-      * create the `X-Y-stable` branch from `master`.
-      * bump version number to next release (`X.Y+1`) in the `VERSION` file.
-      * add the corresponding `CHANGELOG` section to ease upcoming Merge Requests.
-      * push the branch `X-Y-stable` to remote, this generates the `X-Y-stable` Docker image.
-* create the QA issue with the `./scripts/qa_issue.rb X-Y-stable` script.
+    * create the `X-Y-stable` branch from `master`.
+    * bump version number to next release (`X.Y+1`) in the `VERSION` file.
+    * add the corresponding `CHANGELOG` section to ease upcoming Merge Requests.
+    * push the branch `X-Y-stable` to remote, this generates the `X-Y-stable` Docker image.
+* create the QA issue
 
 ### After the 7th and until next month:
 
