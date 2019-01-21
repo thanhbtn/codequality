@@ -4,6 +4,19 @@ GitLab CodeQuality follows versioning of GitLab (`MAJOR.MINOR` only) and generat
 
 These "stable" Docker images may be updated after release date, changes are added to the corresponding section bellow.
 
+## 11-9-stable
+- Upgrade Code Climate to 0.83.0
+
+## 11-8-stable
+
+## 11-7-stable
+
+## 11-6-stable
+
+## 11-5-stable
+
+## 11-4-stable
+
 ## 11-3-stable
 
 ## 11-2-stable
