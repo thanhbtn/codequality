@@ -63,9 +63,12 @@ fi
 # code climate engines to mount the source code dir into their own container.
 # TIMEOUT_SECONDS env variable is optional. It allows you to increase the timeout
 # window for the analyze command.
+# CODECLIMATE_DEBUG env variable is optional. It enables Code Climate debug
+# logging.
 docker run \
     --env CODECLIMATE_CODE="$SOURCE_CODE" \
-    --env CONTAINER_TIMEOUT_SECONDS=$CONTAINER_TIMEOUT_SECONDS \
+    --env CODECLIMATE_DEBUG \
+    --env CONTAINER_TIMEOUT_SECONDS \
     --volume "$SOURCE_CODE":/code \
     --volume /tmp/cc:/tmp/cc \
     --volume /var/run/docker.sock:/var/run/docker.sock \
