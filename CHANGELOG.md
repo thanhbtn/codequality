@@ -7,6 +7,7 @@ These "stable" Docker images may be updated after release date, changes are adde
 ## 11-10-stable
 - Upgrade Code Climate to 0.85.1
 - Update Code Climate default excludes
+- Add optional variable(`CODECLIMATE_DEBUG`) to enable Code Climate debug logging
 
 ## 11-9-stable
 - Upgrade Code Climate to 0.83.0
