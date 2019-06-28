@@ -67,8 +67,8 @@ fi
 # logging.
 docker run \
     --env CODECLIMATE_CODE="$SOURCE_CODE" \
-    --env CODECLIMATE_DEBUG \
-    --env CONTAINER_TIMEOUT_SECONDS \
+    --env CODECLIMATE_DEBUG="$CODECLIMATE_DEBUG" \
+    --env CONTAINER_TIMEOUT_SECONDS="$CONTAINER_TIMEOUT_SECONDS" \
     --volume "$SOURCE_CODE":/code \
     --volume /tmp/cc:/tmp/cc \
     --volume /var/run/docker.sock:/var/run/docker.sock \

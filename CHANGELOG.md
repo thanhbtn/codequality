@@ -4,6 +4,9 @@ GitLab CodeQuality follows versioning of GitLab (`MAJOR.MINOR` only) and generat
 
 These "stable" Docker images may be updated after release date, changes are added to the corresponding section bellow.
 
+## 12-1-stable
+- Fix TIMEOUT_SECONDS setting
+
 ## 12-0-stable
 - Upgrade Code Climate to 0.85.4
 
