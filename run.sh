@@ -72,7 +72,7 @@ docker run \
     --volume "$SOURCE_CODE":/code \
     --volume /tmp/cc:/tmp/cc \
     --volume /var/run/docker.sock:/var/run/docker.sock \
-    "codeclimate/codeclimate:$CODECLIMATE_VERSION" analyze -f json > /tmp/raw_codeclimate.json
+    "codeclimate/codeclimate:$CODECLIMATE_VERSION" analyze ${CODECLIMATE_DEV:+--dev} -f json > /tmp/raw_codeclimate.json
 
 if [ $? -ne 0 ]; then
     echo "Could not analyze code quality for the repository at $APP_PATH"

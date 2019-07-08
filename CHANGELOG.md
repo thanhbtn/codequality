@@ -6,6 +6,7 @@ These "stable" Docker images may be updated after release date, changes are adde
 
 ## 12-1-stable
 - Fix TIMEOUT_SECONDS setting
+- Add optional variable(`CODECLIMATE_DEV`) to enable Code Climate development mode
 
 ## 12-0-stable
 - Upgrade Code Climate to 0.85.4
