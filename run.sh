@@ -79,5 +79,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# redirect STDOUT to disk (default), unless REPORT_STDOUT is set
+if [ -z "$REPORT_STDOUT" ]; then
+  exec > "$APP_PATH/$REPORT_FILENAME"
+fi
+
 # Only keep "issue" type
-jq -c 'map(select(.type | test("issue"; "i")))' /tmp/raw_codeclimate.json > "$APP_PATH/$REPORT_FILENAME"
+jq -c 'map(select(.type | test("issue"; "i")))' /tmp/raw_codeclimate.json

@@ -20,7 +20,7 @@ It is currently based on CodeClimate only, but this may change in the future.
     ```
     `VERSION` can be replaced with the latest available release matching your GitLab version. See [Versioning](#versioning-and-release-cycle) for more details.
 
-1. The results will be stored in the `codeclimate.json` file in the application directory.
+1. The results will be stored in the `gl-code-quality-report.json` file in the application directory.
 
 **Why mounting the Docker socket?**
 
@@ -36,6 +36,7 @@ Code Quality can be configured with environment variables, here is a list:
 | TIMEOUT_SECONDS   | Custom timeout for the `codeclimate analyze` command |
 | CODECLIMATE_DEBUG | Set to enable [Code Climate debug mode](https://github.com/codeclimate/codeclimate#environment-variables) |
 | CODECLIMATE_DEV   | Set to enable `--dev` mode which lets you run engines not known to the CLI. |
+| REPORT_STDOUT     | Set to print the report to `STDOUT` instead of generating the usual report file. |
 
 ### Configuration
 

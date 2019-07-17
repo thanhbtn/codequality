@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Make it TAP compliant, see http://testanything.org/tap-specification.html
-echo "1..2"
+echo "1..3"
 
 failed=0
 step=1
@@ -29,6 +29,19 @@ rm -f $got
 DEFAULT_FILES_PATH="$PWD/codeclimate_defaults" SOURCE_CODE=$fixtures_path ./run.sh $fixtures_path
 
 if test $? -eq 0 && diff $got $expect; then
+  echo "ok $step - $desc"
+else
+  echo "not ok $step - $desc"
+  failed=$((failed+1))
+fi
+step=$((step+1))
+echo
+
+# with defined REPORT_STDOUT
+desc="Send expected output to STDOUT"
+viaout=$(REPORT_STDOUT=1 DEFAULT_FILES_PATH="$PWD/codeclimate_defaults" SOURCE_CODE=$fixtures_path ./run.sh "$fixtures_path")
+
+if test $? -eq 0 && echo "$viaout" | diff - "$expect"; then
   echo "ok $step - $desc"
 else
   echo "not ok $step - $desc"
