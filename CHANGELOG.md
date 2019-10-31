@@ -4,6 +4,9 @@ GitLab CodeQuality follows versioning of GitLab (`MAJOR.MINOR` only) and generat
 
 These "stable" Docker images may be updated after release date, changes are added to the corresponding section bellow.
 
+## 12-5-stable
+- Ignore minified files (`*.min.js`, `*.min.css`)
+
 ## 12-4-stable
 - Upgrade Code Climate to 0.85.5
 
