@@ -39,9 +39,9 @@ echo
 
 # with defined REPORT_STDOUT
 desc="Send expected output to STDOUT"
-viaout=$(REPORT_STDOUT=1 DEFAULT_FILES_PATH="$PWD/codeclimate_defaults" SOURCE_CODE=$fixtures_path ./run.sh "$fixtures_path")
+alias viaout="REPORT_STDOUT=1 DEFAULT_FILES_PATH=\"$PWD/codeclimate_defaults\" SOURCE_CODE=$fixtures_path ./run.sh $fixtures_path"
 
-if test $? -eq 0 && echo "$viaout" | diff - "$expect"; then
+if test $? -eq 0 && viaout | diff - $expect; then
   echo "ok $step - $desc"
 else
   echo "not ok $step - $desc"
@@ -58,4 +58,3 @@ if [ $failed -ne 0 ]; then
 else
   echo "Passed $count tests"
 fi
-

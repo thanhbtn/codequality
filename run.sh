@@ -64,6 +64,23 @@ fi
 # Docker 18.09 or earlier: https://github.com/docker/cli/pull/882
 docker pull "$CODECLIMATE_IMAGE" > /dev/null
 
+# We need to run engines:install before analyze to avoid hitting timeout errors.
+# See: https://github.com/codeclimate/codeclimate/issues/866#issuecomment-418758879
+# We also dump the output to a /dev/null to not mess up the result when REPORT_STDOUT is enabled.
+docker run \
+    --env CODECLIMATE_CODE="$SOURCE_CODE" \
+    --env CODECLIMATE_DEBUG="$CODECLIMATE_DEBUG" \
+    --env CONTAINER_TIMEOUT_SECONDS="$CONTAINER_TIMEOUT_SECONDS" \
+    --volume "$SOURCE_CODE":/code \
+    --volume /tmp/cc:/tmp/cc \
+    --volume /var/run/docker.sock:/var/run/docker.sock \
+    "codeclimate/codeclimate:$CODECLIMATE_VERSION" engines:install > /dev/null
+
+if [ $? -ne 0 ]; then
+    echo "Could not install code climate engines for the repository at $APP_PATH"
+    exit 1
+fi
+
 # Run the code climate container.
 # SOURCE_CODE env variable must be provided when launching this script. It allow
 # code climate engines to mount the source code dir into their own container.
