@@ -32,6 +32,7 @@ APP_PATH=$1
 REPORT_FILENAME="gl-code-quality-report.json"
 DEFAULT_FILES_PATH=${DEFAULT_FILES_PATH:-/codeclimate_defaults}
 CODECLIMATE_VERSION=${CODECLIMATE_VERSION:-0.85.5}
+CODECLIMATE_IMAGE="codeclimate/codeclimate:$CODECLIMATE_VERSION"
 CONTAINER_TIMEOUT_SECONDS=${TIMEOUT_SECONDS:-900} # default to 15 min
 
 if [ -z "$SOURCE_CODE" ] ; then
@@ -58,6 +59,11 @@ if ! [ -f  $APP_PATH/.eslintrc.js -o -f $APP_PATH/.eslintrc.yaml -o -f $APP_PATH
   cp $DEFAULT_FILES_PATH/.eslintrc.yml $APP_PATH/
 fi
 
+# Pull the code climate image in advance of running the container to
+# suppress progress.  The `--quiet` option is not passed to support
+# Docker 18.09 or earlier: https://github.com/docker/cli/pull/882
+docker pull "$CODECLIMATE_IMAGE" > /dev/null
+
 # Run the code climate container.
 # SOURCE_CODE env variable must be provided when launching this script. It allow
 # code climate engines to mount the source code dir into their own container.
@@ -72,7 +78,7 @@ docker run \
     --volume "$SOURCE_CODE":/code \
     --volume /tmp/cc:/tmp/cc \
     --volume /var/run/docker.sock:/var/run/docker.sock \
-    "codeclimate/codeclimate:$CODECLIMATE_VERSION" analyze ${CODECLIMATE_DEV:+--dev} -f json > /tmp/raw_codeclimate.json
+    "$CODECLIMATE_IMAGE" analyze ${CODECLIMATE_DEV:+--dev} -f json > /tmp/raw_codeclimate.json
 
 if [ $? -ne 0 ]; then
     echo "Could not analyze code quality for the repository at $APP_PATH"
