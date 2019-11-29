@@ -28,7 +28,7 @@ desc="Generate expected output"
 rm -f $got
 DEFAULT_FILES_PATH="$PWD/codeclimate_defaults" SOURCE_CODE=$fixtures_path ./run.sh $fixtures_path
 
-if test $? -eq 0 && diff $got $expect; then
+if test $? -eq 0 && diff "$got" "$expect"; then
   echo "ok $step - $desc"
 else
   echo "not ok $step - $desc"
@@ -39,9 +39,9 @@ echo
 
 # with defined REPORT_STDOUT
 desc="Send expected output to STDOUT"
-alias viaout="REPORT_STDOUT=1 DEFAULT_FILES_PATH=\"$PWD/codeclimate_defaults\" SOURCE_CODE=$fixtures_path ./run.sh $fixtures_path"
+alias viaout="REPORT_STDOUT=1 DEFAULT_FILES_PATH=\"$PWD/codeclimate_defaults\" SOURCE_CODE=\"$fixtures_path\" ./run.sh \"$fixtures_path\""
 
-if test $? -eq 0 && viaout | diff - $expect; then
+if test $? -eq 0 && viaout | diff - "$expect"; then
   echo "ok $step - $desc"
 else
   echo "not ok $step - $desc"
