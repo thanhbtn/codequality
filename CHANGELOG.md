@@ -1,10 +1,9 @@
 # GitLab CodeQuality changelog
 
-GitLab CodeQuality follows versioning of GitLab (`MAJOR.MINOR` only) and generates a `MAJOR-MINOR-stable` [Docker image](https://gitlab.com/gitlab-org/security-products/codequality/container_registry).
+GitLab Code Quality versions follow the Code Climate versions used, and generate a `[CODE_CLIMATE_VERSION]-gitlab.[CHANGE_INCREMENT]` [Docker image](https://gitlab.com/gitlab-org/security-products/codequality/container_registry). Versioning before `0.85.5` was based on major GitLab versions, and was deprecated after GitLab `12.4`.
 
-These "stable" Docker images may be updated after release date, changes are added to the corresponding section bellow.
-
-## 12-5-stable
+## 0.85.5
+- This marks the start of the new versioning scheme
 - Ignore minified files (`*.min.js`, `*.min.css`)
 
 ## 12-4-stable
