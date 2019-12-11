@@ -5,6 +5,7 @@ GitLab Code Quality versions follow the Code Climate versions used, and generate
 ## 0.85.5
 - This marks the start of the new versioning scheme
 - Ignore minified files (`*.min.js`, `*.min.css`)
+- Suppress the progress of downloading layers on running codeclimate image
 
 ## 12-4-stable
 - Upgrade Code Climate to 0.85.5
