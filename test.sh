@@ -39,9 +39,11 @@ echo
 
 # with defined REPORT_STDOUT
 desc="Send expected output to STDOUT"
-alias viaout="REPORT_STDOUT=1 DEFAULT_FILES_PATH=\"$PWD/codeclimate_defaults\" SOURCE_CODE=\"$fixtures_path\" ./run.sh \"$fixtures_path\""
+rm -f $got
+# Due to diff issues with newline chars comparison, we just forward the STDOUT output to a file first and then do the diff.
+REPORT_STDOUT=1 DEFAULT_FILES_PATH="$PWD/codeclimate_defaults" SOURCE_CODE="$fixtures_path" ./run.sh "$fixtures_path" > "$got"
 
-if test $? -eq 0 && viaout | diff - "$expect"; then
+if test $? -eq 0 && diff "$got" "$expect"; then
   echo "ok $step - $desc"
 else
   echo "not ok $step - $desc"
