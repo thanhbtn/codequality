@@ -74,7 +74,7 @@ docker run \
     --volume "$SOURCE_CODE":/code \
     --volume /tmp/cc:/tmp/cc \
     --volume /var/run/docker.sock:/var/run/docker.sock \
-    "codeclimate/codeclimate:$CODECLIMATE_VERSION" engines:install > /dev/null
+    "$CODECLIMATE_IMAGE" engines:install > /dev/null
 
 if [ $? -ne 0 ]; then
     echo "Could not install code climate engines for the repository at $APP_PATH"
