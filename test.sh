@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Make it TAP compliant, see http://testanything.org/tap-specification.html
 echo "1..3"
