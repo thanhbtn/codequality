@@ -4,7 +4,7 @@
 [![coverage report](https://gitlab.com/gitlab-org/security-products/codequality/badges/master/coverage.svg)](https://gitlab.com/gitlab-org/security-products/codequality/commits/master)
 
 GitLab tool for running Code Quality checks on provided source code.
-It is currently based on CodeClimate only, but this may change in the future.
+It is currently based on Code Climate only, but this may change in the future.
 
 ## How to use
 
@@ -30,18 +30,18 @@ Some tools require to be able to launch Docker containers to scan your applicati
 
 Code Quality can be configured with environment variables, here is a list:
 
-| Name              | Function                                             |
-|-------------------|------------------------------------------------------|
-| SOURCE_CODE       | Path to the source code to scan                      |
-| TIMEOUT_SECONDS   | Custom timeout for the `codeclimate analyze` command |
-| CODECLIMATE_DEBUG | Set to enable [Code Climate debug mode](https://github.com/codeclimate/codeclimate#environment-variables) |
-| CODECLIMATE_DEV   | Set to enable `--dev` mode which lets you run engines not known to the CLI. |
-| REPORT_STDOUT     | Set to print the report to `STDOUT` instead of generating the usual report file. |
+| Name                | Function                                             |
+|---------------------|------------------------------------------------------|
+| `SOURCE_CODE`       | Path to the source code to scan                      |
+| `TIMEOUT_SECONDS`   | Custom timeout for the `codeclimate analyze` command |
+| `CODECLIMATE_DEBUG` | Set to enable [Code Climate debug mode](https://github.com/codeclimate/codeclimate#environment-variables) |
+| `CODECLIMATE_DEV`   | Set to enable `--dev` mode which lets you run engines not known to the CLI. |
+| `REPORT_STDOUT`     | Set to print the report to `STDOUT` instead of generating the usual report file. |
 
 ### Configuration
 
 GitLab Code Quality comes with some default engines enabled and [default configurations](./codeclimate_defaults) but we encourage you to customize them to your own needs.
-Please refer to [CodeClimate documentation](https://docs.codeclimate.com/docs/configuring-your-analysis) to learn more.
+Please refer to [Code Climate documentation](https://docs.codeclimate.com/docs/advanced-configuration) to learn more.
 
 ## Versioning and release cycle
 
