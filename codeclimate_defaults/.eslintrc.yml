@@ -21,7 +21,7 @@ rules:
   no-control-regex: error
   no-debugger: error
   no-dupe-args: error
-  no-dupe-keys: error
+  no-dupe-keys: off
   no-duplicate-case: error
   no-empty-character-class: error
   no-empty: error
